@@ -508,3 +508,26 @@ a.work-card:hover{transform:translateY(-4px);box-shadow:inset 0 1px 0 var(--glas
   .filters{position:static;padding:14px}
   .year-head h2{font-size:22px}
 }
+
+/* ---------- locked contact card (กิมมิก ไม่ให้เปิด) ---------- */
+.contact-card.locked{
+  position:relative;
+  cursor:not-allowed;
+  -webkit-user-select:none;user-select:none;
+}
+.contact-card.locked:hover{transform:none;border-color:var(--border)}
+.contact-card.locked .locked-val{
+  filter:blur(6px);
+  opacity:.75;
+  pointer-events:none;
+  letter-spacing:.06em;
+}
+.contact-card .lock{
+  position:absolute;right:22px;top:50%;transform:translateY(-50%);
+  width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;
+  background:var(--glass-soft);
+  border:1px solid var(--border);
+  color:var(--text-dim);
+}
+.contact-card .lock svg{width:16px;height:16px}
