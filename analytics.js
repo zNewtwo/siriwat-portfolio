@@ -12,13 +12,14 @@
         ให้ก็อปเฉพาะค่า token มาวางในบรรทัดล่างนี้
    =========================================================================== */
 
-var CF_BEACON_TOKEN = '';
+var CF_BEACON_TOKEN = 'dd200441616d4b39827e3efb53bad417';
 
 (function () {
   if (!CF_BEACON_TOKEN) return;
 
+  // สร้างให้ตรงกับ snippet ที่ Cloudflare ให้มา (type="module")
   var s = document.createElement('script');
-  s.defer = true;
+  s.type = 'module';
   s.src = 'https://static.cloudflareinsights.com/beacon.min.js';
   s.setAttribute('data-cf-beacon', JSON.stringify({ token: CF_BEACON_TOKEN }));
   document.head.appendChild(s);
