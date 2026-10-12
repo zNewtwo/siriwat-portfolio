@@ -25,7 +25,7 @@
   // still renders in full if this script never runs.
   document.documentElement.classList.add('js');
 </script>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 
@@ -357,7 +357,15 @@
       </div>
       <div class="contact-grid">
         <a class="contact-card reveal" href="mailto:siriwat.gunha@gmail.com"><div class="k">Email</div><div class="v">siriwat.gunha@gmail.com</div></a>
-        <a class="contact-card reveal" href="tel:0876765135"><div class="k">โทรศัพท์</div><div class="v">087-676-5135</div></a>
+        <!-- เบอร์ถูกเข้ารหัส base64 ไว้ใน data-ph เพื่อกัน bot ที่กวาดเบอร์จากหน้าเว็บแบบดิบ ๆ -->
+        <div class="contact-card peekable reveal" role="group">
+          <div class="k">โทรศัพท์</div>
+          <div class="v masked-val" id="phoneVal" data-ph="MDg3LTY3Ni01MTM1">•••-•••-••••</div>
+          <button class="peek" type="button" id="phonePeek" aria-expanded="false" aria-controls="phoneVal" aria-label="แสดงเบอร์โทรศัพท์" title="กดเพื่อแสดงเบอร์">
+            <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.6 6.2A9.9 9.9 0 0 1 12 6.1c5 0 9 4.4 9 5.9 0 .7-.9 2.2-2.4 3.5M6.5 7.9C4.3 9.2 3 10.9 3 12c0 1.5 4 5.9 9 5.9 1.6 0 3-.4 4.3-1.1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="M3.5 3.5l17 17"/></svg>
+            <svg class="eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12s3.8-5.9 9-5.9S21 12 21 12s-3.8 5.9-9 5.9S3 12 3 12Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+          </button>
+        </div>
         <a class="contact-card reveal" href="https://www.linkedin.com/in/new-s15/" target="_blank" rel="noopener"><div class="k">LinkedIn</div><div class="v">new-s15</div></a>
         <!-- ไอดีจริงไม่ได้อยู่ในหน้านี้ ตัวอักษรด้านล่างเป็นจุดหลอกที่เบลอไว้เฉย ๆ -->
         <div class="contact-card locked reveal" role="group" aria-label="Line: ไม่เปิดเผยบนเว็บไซต์">
@@ -428,9 +436,37 @@
     io.observe(el);
   });
 
+  // เบอร์โทร: กดรูปตาเพื่อสลับซ่อน/แสดง
+  var peek = document.getElementById('phonePeek');
+  var phone = document.getElementById('phoneVal');
+  if (peek && phone) {
+    var masked = phone.textContent;
+    peek.addEventListener('click', function () {
+      var open = peek.getAttribute('aria-expanded') === 'true';
+      if (open) {
+        phone.textContent = masked;
+        phone.classList.remove('shown');
+        peek.setAttribute('aria-expanded', 'false');
+        peek.setAttribute('aria-label', 'แสดงเบอร์โทรศัพท์');
+        peek.title = 'กดเพื่อแสดงเบอร์';
+      } else {
+        var num = atob(phone.dataset.ph);
+        phone.textContent = '';
+        var a = document.createElement('a');
+        a.href = 'tel:' + num.replace(/-/g, '');
+        a.textContent = num;
+        phone.appendChild(a);
+        phone.classList.add('shown');
+        peek.setAttribute('aria-expanded', 'true');
+        peek.setAttribute('aria-label', 'ซ่อนเบอร์โทรศัพท์');
+        peek.title = 'กดเพื่อซ่อนเบอร์';
+      }
+    });
+  }
+
   document.getElementById('yr').textContent = new Date().getFullYear();
 })();
 </script>
-<script src="analytics.js"></script>
+<script src="analytics.js?v=3"></script>
 </body>
 </html>
