@@ -1,0 +1,108 @@
+/* ===========================================================================
+   ข้อมูลผลงานทั้งหมด — แก้ไฟล์นี้ไฟล์เดียวเวลาจะเพิ่ม/แก้ผลงาน
+   หน้า work.html จะอ่านจากตรงนี้แล้วสร้างการ์ด ตัวกรอง และกลุ่มปีให้อัตโนมัติ
+
+   วิธีเพิ่มงานใหม่ — ก็อปบรรทัดนี้ไปวางในลิสต์ แล้วแก้ค่า:
+     { name: 'ชื่องาน', url: 'example.com', year: 2026, cat: 'site' },
+
+   ฟิลด์ที่ใส่ได้
+     name    (บังคับ) ชื่อที่จะโชว์บนการ์ด
+     cat     (บังคับ) หมวด — ดูรายการใน CATEGORIES ด้านล่าง
+     url     ลิงก์เว็บ ไม่ต้องใส่ https:// (เว้นว่างได้ถ้าไม่มีลิงก์)
+     year    ปีที่ทำ เป็นตัวเลข — ใส่ null ถ้ายังไม่ระบุ
+     brand   ชื่อลูกค้า/แบรนด์ โชว์เป็นป้ายเล็กบนการ์ด
+     note    คำอธิบายสั้น ๆ
+     offline true ถ้าเว็บไม่ออนไลน์แล้ว (จะไม่ทำเป็นลิงก์)
+   =========================================================================== */
+
+const CATEGORIES = [
+  { id: 'solo',     label: 'พัฒนาเองทั้งระบบ' },
+  { id: 'site',     label: 'เว็บไซต์ใหม่' },
+  { id: 'event',    label: 'ระบบงานอีเวนต์' },
+  { id: 'maintain', label: 'ดูแลต่อเนื่อง' },
+  { id: 'landing',  label: 'Landing page' },
+  { id: 'article',  label: 'บทความ & SEO' },
+];
+
+const PROJECTS = [
+  /* ---------- พัฒนาเองทั้งระบบ (Next.js / Supabase) ---------- */
+  { name: 'smfticket', url: 'smfticket.com', year: 2026, cat: 'solo',
+    note: 'ระบบจัดการบัตรเข้างาน ออกแบบและเขียนเองทั้งระบบ — Next.js / React + Supabase, deploy บน Vercel, Cloudflare จัดการโดเมนและ CDN, Resend ส่งอีเมลระบบ' },
+  { name: 'eventfox', url: 'eventfox.sufwolf.com', year: 2026, cat: 'solo',
+    note: 'ระบบจัดการงานอีเวนต์ เขียนเองทั้งระบบด้วย stack เดียวกัน ใช้งานกับงานลูกค้าจริงแล้ว' },
+
+  /* ---------- ระบบงานอีเวนต์ (เขียนเอง + ประจำหน้างาน) ---------- */
+  { name: 'ระบบเช็คอิน & สุ่มรางวัล — งาน Outing ประจำปี', brand: 'SGS', year: null, cat: 'event',
+    note: 'ผู้เข้าร่วม 1,000+ คน — ออกแบบ flow การเข้างาน ระบบเช็คอิน/ลงทะเบียน ระบบนับผู้เข้าร่วม และระบบสุ่มรางวัล พร้อมประจำหน้างานในวันจริง' },
+  { name: 'ระบบลงทะเบียน & สุ่มรางวัลหน้างาน', brand: 'ยำยำ', year: null, cat: 'event',
+    note: 'ผู้เข้าร่วม 1,300+ คน — ระบบลงทะเบียน ระบบสุ่มรางวัลหน้างาน กำหนดขั้นตอนร่วมกิจกรรม และดูแลระบบตลอดงาน' },
+
+  /* ---------- เว็บไซต์ใหม่ : 2026 ---------- */
+  { name: 'Alfredo', url: 'alfredo.co.th', year: 2026, cat: 'site' },
+  { name: 'Khao Eto', url: 'khaoeto.com', year: 2026, cat: 'site' },
+  { name: 'Shockpoint 168', url: 'shockpoint168.com', year: 2026, cat: 'site' },
+  { name: 'Playboy Condom', url: 'playboycondom.com', year: 2026, cat: 'site',
+    note: 'รับผิดชอบงานประสานงานโปรเจกต์และควบคุม timeline การส่งมอบ' },
+
+  /* ---------- เว็บไซต์ใหม่ : 2025 ---------- */
+  { name: 'SBAC — วิทยาลัยเทคโนโลยีสยามบริหารธุรกิจ', url: 'sbac.ac.th', year: 2025, cat: 'site',
+    note: 'เว็บไซต์สถาบันการศึกษาที่รวมหลายหน่วยงานไว้ในระบบเดียว พร้อมระบบหลังบ้านปรับแต่งเอง (JetEngine) สำหรับข่าว บทความ หลักสูตร และกิจกรรม ออกแบบให้รองรับการขยายในอนาคต' },
+  { name: 'NASCO', url: 'nasco.co.th', year: 2025, cat: 'site',
+    note: 'E-commerce เต็มรูปแบบ — เชื่อมระบบชำระเงิน 2C2P ตั้งค่าการจัดส่งพร้อมคำนวณค่าขนส่งอัตโนมัติ และวางโครงสร้างระบบจัดการคำสั่งซื้อหลังบ้าน' },
+  { name: 'Isan MICE Destination', url: 'isanmicedestination.com', year: 2025, cat: 'site' },
+
+  /* ---------- เว็บไซต์ใหม่ : 2024 ---------- */
+  { name: 'Bank of China (Thai) — Wealth Management', url: 'bankofchina.co.th/dam/en-th/segment/Wealth-Management/en/wealth-management.html', year: 2024, cat: 'site',
+    brand: 'Bank of China',
+    note: 'รับผิดชอบคนเดียวทั้ง 6 หน้า — ปรับโครงหน้าเว็บจากเวอร์ชันภาษาจีนที่ duplicate มาทั้งระบบ ให้เป็นโครงสร้าง EN/TH ที่ถูกต้อง (เนื้อหาแปลโดยลูกค้า) ประสานงานกับทีมของธนาคารโดยตรง' },
+  { name: 'RJTH App', url: 'rjthapp.com', year: 2024, cat: 'site' },
+  { name: 'Ambulance Brand', url: 'ambulancebrand.com', year: 2024, cat: 'site' },
+  { name: 'Think Party', url: 'thinkparty.co.th', year: 2024, cat: 'site' },
+  { name: 'Solutions Impact', url: 'solutionsimpact.com', year: 2024, cat: 'site' },
+  { name: 'Nawaphat Build', year: 2024, cat: 'site', offline: true },
+
+  /* ---------- เว็บไซต์ใหม่ : 2023 ---------- */
+  { name: 'Janjaras Group', url: 'janjarasgroup.com', year: 2023, cat: 'site' },
+  { name: 'Change MS Fest', url: 'changemsfest.org', year: 2023, cat: 'site' },
+  { name: 'Innofresh', url: 'innofresh.co.th', year: 2023, cat: 'site' },
+  { name: 'Telescope Thailand', url: 'telescopethailand.com', year: 2023, cat: 'site' },
+  { name: 'Northmed Hospital', url: 'northmed-hospital.com', year: 2023, cat: 'site' },
+  { name: 'ISU Congress 2022', year: 2023, cat: 'site', offline: true },
+
+  /* ---------- ดูแลต่อเนื่อง ---------- */
+  { name: 'Telescope Thailand', url: 'telescopethailand.com', year: 2026, cat: 'maintain', note: 'ดูแลระบบและอัปเดตต่อเนื่องหลังส่งมอบ' },
+  { name: 'NASCO', url: 'nasco.co.th', year: 2026, cat: 'maintain', note: 'ดูแลระบบและอัปเดตต่อเนื่องหลังส่งมอบ' },
+  { name: 'Innofresh', url: 'innofresh.co.th', year: 2026, cat: 'maintain', note: 'ดูแลระบบและอัปเดตต่อเนื่องหลังส่งมอบ' },
+  { name: 'RJTH App', url: 'rjthapp.com', year: 2026, cat: 'maintain', note: 'ดูแลระบบและอัปเดตต่อเนื่องหลังส่งมอบ' },
+  { name: 'Northmed Hospital', url: 'northmed-hospital.com', year: 2025, cat: 'maintain', note: 'ดูแลระบบและอัปเดตต่อเนื่องหลังส่งมอบ' },
+
+  /* ---------- Landing page รายรุ่น / รายบริการ ---------- */
+  { name: 'Electric Bus', brand: 'MPE Powernex', url: 'mpepowernex.com/services/electric-bus/', year: null, cat: 'landing' },
+  { name: 'Food Truck', brand: 'Suzuki — Maporn', url: 'mapornsuzukith.com/model/food-truck/', year: null, cat: 'landing' },
+  { name: 'Carry', brand: 'Suzuki — Maporn', url: 'mapornsuzukith.com/model/carry/', year: null, cat: 'landing' },
+  { name: 'Celerio', brand: 'Suzuki — Maporn', url: 'mapornsuzukith.com/model/celerio/', year: null, cat: 'landing' },
+  { name: 'Ertiga', brand: 'Suzuki — Maporn', url: 'mapornsuzukith.com/model/ertiga/', year: null, cat: 'landing' },
+  { name: 'XL7', brand: 'Suzuki — Maporn', url: 'mapornsuzukith.com/model/xl7/', year: null, cat: 'landing' },
+  { name: 'Ciaz', brand: 'Suzuki — Maporn', url: 'mapornsuzukith.com/model/ciaz/', year: null, cat: 'landing' },
+  { name: 'Swift', brand: 'Suzuki — Maporn', url: 'mapornsuzukith.com/model/swift-current/', year: null, cat: 'landing' },
+
+  /* ---------- บทความ & โครงสร้าง SEO (กำหนด H1/H2/H3 ตามบทความ) ---------- */
+  { name: 'Body Lift Thermage FLX', brand: 'Aes Class Clinic', url: 'aesclassclinic.com/treatments/body-lift-thermage-flx/', year: null, cat: 'article' },
+  { name: 'Eye Lift Thermage FLX', brand: 'Aes Class Clinic', url: 'aesclassclinic.com/treatments/eye-lift-thermage-flx/', year: null, cat: 'article' },
+  { name: 'Filler ใต้ตา', brand: 'Aes Class Clinic', url: 'aesclassclinic.com/treatments/filler-under-the-eyes/', year: null, cat: 'article' },
+  { name: 'Body Lift Morpheus 8', brand: 'Aes Class Clinic', url: 'aesclassclinic.com/treatments/body-lift-morpheus-8/', year: null, cat: 'article' },
+  { name: 'Filler ร่องแก้ม', brand: 'Aes Class Clinic', url: 'aesclassclinic.com/treatments/filler-cheek-groove/', year: null, cat: 'article' },
+  { name: 'Eye Lift Morpheus 8', brand: 'Aes Class Clinic', url: 'aesclassclinic.com/treatments/eye-lift-morpheus-8/', year: null, cat: 'article' },
+  { name: 'Filler ปาก', brand: 'Aes Class Clinic', url: 'aesclassclinic.com/treatments/filler-mouth/', year: null, cat: 'article' },
+  { name: 'รักษาฝ้า', brand: 'Pewdee Clinic', url: 'pewdeeclinic.com/services/melasma/', year: null, cat: 'article' },
+  { name: 'รักษาจุดด่างดำ', brand: 'Pewdee Clinic', url: 'pewdeeclinic.com/services/treat-dark-spots/', year: null, cat: 'article' },
+  { name: 'Botox', brand: 'Pewdee Clinic', url: 'pewdeeclinic.com/services/botoxin/', year: null, cat: 'article' },
+  { name: 'CoolSculpting ลดไขมัน', brand: 'Pewdee Clinic', url: 'pewdeeclinic.com/services/fat-reduction-coolsculpting/', year: null, cat: 'article' },
+  { name: 'Filler Sculptra', brand: 'Pewdee Clinic', url: 'pewdeeclinic.com/services/filling-sculptra/', year: null, cat: 'article' },
+  { name: 'รักษาหลุมสิว', brand: 'Pewdee Clinic', url: 'pewdeeclinic.com/services/treat-acne-scarsr/', year: null, cat: 'article' },
+  { name: 'Thermage FLX', brand: 'Pongsak Clinic', url: 'pongsak-clinic.com/treatment/thermage-flx/', year: null, cat: 'article' },
+  { name: 'ERP-IS', brand: 'M-Creation', url: 'm-creation.co/erp-is/', year: null, cat: 'article' },
+  { name: 'CDP-IS', brand: 'M-Creation', url: 'm-creation.co/cdp-is/', year: null, cat: 'article' },
+  { name: 'WMS-IS', brand: 'M-Creation', url: 'm-creation.co/wms-is/', year: null, cat: 'article' },
+  { name: 'OMS-IS', brand: 'M-Creation', url: 'm-creation.co/oms-is/', year: null, cat: 'article' },
+];

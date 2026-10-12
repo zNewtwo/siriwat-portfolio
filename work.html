@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="th" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ผลงานทั้งหมด — ศิริวัฒน์ กันหา</title>
+<meta name="description" content="รวมผลงานเว็บทั้งหมดของศิริวัฒน์ กันหา แยกตามหมวดหมู่และปี — เว็บไซต์ใหม่ งานดูแลต่อเนื่อง landing page บทความ SEO และระบบงานอีเวนต์">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('theme');
+      if (saved === 'light' || saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', saved);
+        return;
+      }
+    } catch (e) {}
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+  })();
+  document.documentElement.classList.add('js');
+</script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <nav class="nav wrap">
+    <a href="index.html" class="logo"><span class="mark">SG</span> ศิริวัฒน์ กันหา</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">หน้าแรก</a></li>
+      <li><a href="index.html#skills">ความเชี่ยวชาญ</a></li>
+      <li><a href="work.html">ผลงานทั้งหมด</a></li>
+      <li><a href="index.html#about">เกี่ยวกับ</a></li>
+      <li><a href="index.html#contact">ติดต่อ</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="toggle" id="themeToggle" aria-label="สลับโหมดสว่าง/มืด" title="สลับโหมดสว่าง/มืด">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.3M12 19.3v2.3M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.4 12h2.3M19.3 12h2.3M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a8.5 8.5 0 1 0 10.8 10.8Z"/></svg>
+      </button>
+      <a href="index.html#contact" class="btn btn-primary btn-sm">ติดต่อผม</a>
+      <button class="burger" id="burger" aria-label="เปิดเมนู">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="page-head">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="wrap inner">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-6 6 6 6"/></svg>
+        กลับหน้าแรก
+      </a>
+      <h1>ผลงานทั้งหมด</h1>
+      <p class="lead" id="intro"></p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="filters">
+      <div class="filter-row" id="catRow"><span class="k">หมวดหมู่</span></div>
+      <div class="filter-row" id="yearRow"><span class="k">ปี</span></div>
+    </div>
+    <p class="result-line" id="resultLine"></p>
+    <div id="results"></div>
+  </div>
+
+  <div class="wrap" style="margin:72px 0 0">
+    <div class="cta-band">
+      <div class="orb orb-c"></div>
+      <h2>สนใจร่วมงานกันไหมครับ</h2>
+      <p>ถ้ากำลังมองหาคนที่ดูแลงานเว็บได้จริงทุกขั้น ตั้งแต่คุยโจทย์ไปจนเว็บขึ้นจริง ยินดีพูดคุยครับ</p>
+      <div class="cta-actions">
+        <a href="mailto:siriwat.gunha@gmail.com" class="btn btn-primary">ส่งอีเมลหาผม</a>
+        <a href="index.html#contact" class="btn btn-ghost">ช่องทางติดต่ออื่น</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a href="index.html" class="logo"><span class="mark">SG</span> ศิริวัฒน์ กันหา</a>
+    <div class="foot-links">
+      <a href="index.html#skills">ความเชี่ยวชาญ</a>
+      <a href="work.html">ผลงานทั้งหมด</a>
+      <a href="index.html#about">เกี่ยวกับ</a>
+      <a href="index.html#contact">ติดต่อ</a>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:20px">
+    <p class="copy" style="font-size:13.5px;color:var(--text-dim)">© <span id="yr"></span> Siriwat Gunha · Programmer &amp; Project Coordinator · Bangkok, Thailand</p>
+  </div>
+</footer>
+
+<script src="projects.js"></script>
+<script>
+(function () {
+  var root = document.documentElement;
+
+  document.getElementById('themeToggle').addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (err) {}
+      if (!saved) root.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+    });
+  }
+  var burger = document.getElementById('burger');
+  var links = document.getElementById('navLinks');
+  burger.addEventListener('click', function () { links.classList.toggle('open'); });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* ----------------------------- data ----------------------------- */
+  var catLabel = {};
+  CATEGORIES.forEach(function (c) { catLabel[c.id] = c.label; });
+
+  var years = [];
+  var hasUndated = false;
+  PROJECTS.forEach(function (p) {
+    if (p.year == null) hasUndated = true;
+    else if (years.indexOf(p.year) === -1) years.push(p.year);
+  });
+  years.sort(function (a, b) { return b - a; });
+
+  var state = { cat: 'all', year: 'all' };
+
+  var esc = function (s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  };
+
+  /* -------------------------- intro copy -------------------------- */
+  var counts = {};
+  CATEGORIES.forEach(function (c) {
+    counts[c.id] = PROJECTS.filter(function (p) { return p.cat === c.id; }).length;
+  });
+  document.getElementById('intro').textContent =
+    'รวม ' + PROJECTS.length + ' รายการ ตั้งแต่ปี ' + years[years.length - 1] + ' ถึง ' + years[0] +
+    ' — ' + CATEGORIES.map(function (c) { return c.label + ' ' + counts[c.id]; }).join(' · ');
+
+  /* --------------------------- filters ---------------------------- */
+  function chip(label, value, key, n) {
+    var b = document.createElement('button');
+    b.className = 'fbtn';
+    b.type = 'button';
+    b.setAttribute('aria-pressed', String(state[key] === value));
+    b.innerHTML = esc(label) + (n != null ? ' <span class="n">' + n + '</span>' : '');
+    b.addEventListener('click', function () {
+      state[key] = value;
+      syncChips();
+      render();
+    });
+    b.dataset.key = key;
+    b.dataset.value = String(value);
+    return b;
+  }
+
+  var catRow = document.getElementById('catRow');
+  var yearRow = document.getElementById('yearRow');
+
+  catRow.appendChild(chip('ทั้งหมด', 'all', 'cat', PROJECTS.length));
+  CATEGORIES.forEach(function (c) {
+    if (counts[c.id]) catRow.appendChild(chip(c.label, c.id, 'cat', counts[c.id]));
+  });
+
+  yearRow.appendChild(chip('ทุกปี', 'all', 'year'));
+  years.forEach(function (y) { yearRow.appendChild(chip(String(y), y, 'year')); });
+  if (hasUndated) yearRow.appendChild(chip('ไม่ระบุปี', 'none', 'year'));
+
+  function syncChips() {
+    document.querySelectorAll('.fbtn').forEach(function (b) {
+      var v = b.dataset.value;
+      var cur = state[b.dataset.key];
+      b.setAttribute('aria-pressed', String(String(cur) === v));
+    });
+  }
+
+  /* ---------------------------- render ---------------------------- */
+  function matches(p) {
+    if (state.cat !== 'all' && p.cat !== state.cat) return false;
+    if (state.year === 'all') return true;
+    if (state.year === 'none') return p.year == null;
+    return p.year === state.year;
+  }
+
+  function card(p) {
+    var link = p.url && !p.offline;
+    var el = document.createElement(link ? 'a' : 'div');
+    el.className = 'work-card';
+    if (link) {
+      el.href = /^https?:\/\//.test(p.url) ? p.url : 'https://' + p.url;
+      el.target = '_blank';
+      el.rel = 'noopener';
+    }
+    var html = '<div class="top"><span class="tag">' + esc(catLabel[p.cat] || p.cat) + '</span>';
+    if (p.brand) html += '<span class="tag muted">' + esc(p.brand) + '</span>';
+    html += '</div><h3>' + esc(p.name) + '</h3>';
+    if (p.note) html += '<p>' + esc(p.note) + '</p>';
+    if (link) {
+      html += '<div class="foot">' + esc(p.url) +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></div>';
+    } else if (p.offline) {
+      html += '<div class="foot offline">ไม่ออนไลน์แล้ว</div>';
+    }
+    el.innerHTML = html;
+    return el;
+  }
+
+  var results = document.getElementById('results');
+  var resultLine = document.getElementById('resultLine');
+
+  function render() {
+    var list = PROJECTS.filter(matches);
+    results.innerHTML = '';
+    resultLine.textContent = 'แสดง ' + list.length + ' จาก ' + PROJECTS.length + ' รายการ';
+
+    if (!list.length) {
+      var empty = document.createElement('div');
+      empty.className = 'empty';
+      empty.textContent = 'ไม่มีผลงานที่ตรงกับตัวกรองนี้';
+      results.appendChild(empty);
+      return;
+    }
+
+    var buckets = [];
+    years.forEach(function (y) {
+      var items = list.filter(function (p) { return p.year === y; });
+      if (items.length) buckets.push({ title: String(y), items: items });
+    });
+    var undated = list.filter(function (p) { return p.year == null; });
+    if (undated.length) buckets.push({ title: 'ไม่ระบุปี', items: undated });
+
+    buckets.forEach(function (b) {
+      var wrap = document.createElement('section');
+      wrap.className = 'year-group';
+      wrap.innerHTML =
+        '<div class="year-head"><h2>' + esc(b.title) + '</h2>' +
+        '<span class="rule"></span><span class="count">' + b.items.length + ' รายการ</span></div>';
+      var grid = document.createElement('div');
+      grid.className = 'work-grid';
+      b.items.forEach(function (p) { grid.appendChild(card(p)); });
+      wrap.appendChild(grid);
+      results.appendChild(wrap);
+    });
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
