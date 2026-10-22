@@ -558,3 +558,36 @@ a.work-card:hover{transform:translateY(-4px);box-shadow:inset 0 1px 0 var(--glas
 .peek .eye-on{display:none}
 .peek[aria-expanded="true"] .eye-off{display:none}
 .peek[aria-expanded="true"] .eye-on{display:block}
+
+/* ---------- work card cover image ---------- */
+.work-card{overflow:hidden}
+.work-card .thumb{
+  position:relative;
+  margin:-22px -22px 8px;
+  aspect-ratio:16/10;
+  overflow:hidden;
+  background:var(--glass-soft);
+  border-bottom:1px solid var(--border);
+}
+.work-card .thumb img{
+  display:block;width:100%;height:100%;
+  object-fit:cover;object-position:top center;
+  transition:transform .5s cubic-bezier(.22,.8,.3,1);
+}
+a.work-card:hover .thumb img{transform:scale(1.04)}
+.work-card .thumb.ph{
+  display:grid;place-items:center;text-align:center;padding:18px;
+  background:linear-gradient(135deg,var(--blue-soft),var(--pink-soft));
+}
+:root[data-theme="dark"] .work-card .thumb.ph{
+  background:linear-gradient(135deg,#243156,#3C2B41);
+}
+.work-card .thumb.ph .ph-ico{
+  width:46px;height:46px;border-radius:14px;margin:0 auto 10px;
+  display:grid;place-items:center;
+  background:rgba(255,255,255,.55);color:#4A5E96;
+}
+:root[data-theme="dark"] .work-card .thumb.ph .ph-ico{background:rgba(255,255,255,.08);color:var(--accent-ink)}
+.work-card .thumb.ph .ph-ico svg{width:22px;height:22px}
+.work-card .thumb.ph .ph-txt{font-size:13px;font-weight:500;color:#3B456B;line-height:1.45}
+:root[data-theme="dark"] .work-card .thumb.ph .ph-txt{color:var(--text-dim)}

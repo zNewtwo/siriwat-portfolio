@@ -22,7 +22,7 @@
   })();
   document.documentElement.classList.add('js');
 </script>
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
 
@@ -101,7 +101,7 @@
   </div>
 </footer>
 
-<script src="projects.js?v=3"></script>
+<script src="projects.js?v=4"></script>
 <script>
 (function () {
   var root = document.documentElement;
@@ -196,6 +196,20 @@
     return p.year === state.year;
   }
 
+  var PH_ICONS = {
+    event: '<path d="M17 20.5v-2a3.5 3.5 0 0 0-3.5-3.5h-6A3.5 3.5 0 0 0 4 18.5v2"/><circle cx="10.5" cy="7.5" r="3.5"/><path d="M20 20.5v-2a3.5 3.5 0 0 0-2.6-3.4M15.5 4.2a3.5 3.5 0 0 1 0 6.6"/>',
+    offline: '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.4 3.6 5.2 3.6 8.5s-1.2 6.1-3.6 8.5c-2.4-2.4-3.6-5.2-3.6-8.5s1.2-6.1 3.6-8.5Z"/>',
+    page: '<rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M7.5 13h6"/>'
+  };
+
+  // ปกสำรองสำหรับงานที่ไม่มีหน้าเว็บให้แคป (งานอีเวนต์ / เว็บที่ปิดแล้ว / รูปโหลดไม่ได้)
+  function placeholder(p) {
+    var key = p.cat === 'event' ? 'event' : (p.offline ? 'offline' : 'page');
+    return '<div class="thumb ph"><div><div class="ph-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+      'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + PH_ICONS[key] + '</svg></div>' +
+      '<div class="ph-txt">' + esc(p.brand || p.name) + '</div></div></div>';
+  }
+
   function card(p) {
     var link = p.url && !p.offline;
     var el = document.createElement(link ? 'a' : 'div');
@@ -205,7 +219,11 @@
       el.target = '_blank';
       el.rel = 'noopener';
     }
-    var html = '<div class="top"><span class="tag">' + esc(catLabel[p.cat] || p.cat) + '</span>';
+    var html = p.cover
+      ? '<div class="thumb"><img src="' + esc(p.cover) + '?v=4" alt="ภาพหน้าเว็บ ' + esc(p.name) +
+        '" loading="lazy" decoding="async" width="960" height="600"></div>'
+      : placeholder(p);
+    html += '<div class="top"><span class="tag">' + esc(catLabel[p.cat] || p.cat) + '</span>';
     if (p.brand) html += '<span class="tag muted">' + esc(p.brand) + '</span>';
     html += '</div><h3>' + esc(p.name) + '</h3>';
     if (p.note) html += '<p>' + esc(p.note) + '</p>';
@@ -216,6 +234,12 @@
       html += '<div class="foot offline">ไม่ออนไลน์แล้ว</div>';
     }
     el.innerHTML = html;
+    var img = el.querySelector('.thumb img');
+    if (img) {
+      img.addEventListener('error', function () {
+        img.parentNode.outerHTML = placeholder(p);
+      }, { once: true });
+    }
     return el;
   }
 
@@ -260,6 +284,6 @@
   render();
 })();
 </script>
-<script src="analytics.js?v=3"></script>
+<script src="analytics.js?v=4"></script>
 </body>
 </html>
