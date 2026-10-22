@@ -591,3 +591,25 @@ a.work-card:hover .thumb img{transform:scale(1.04)}
 .work-card .thumb.ph .ph-ico svg{width:22px;height:22px}
 .work-card .thumb.ph .ph-txt{font-size:13px;font-weight:500;color:#3B456B;line-height:1.45}
 :root[data-theme="dark"] .work-card .thumb.ph .ph-txt{color:var(--text-dim)}
+
+/* ---------- homepage project screenshot inside the browser frame ---------- */
+.mock-shot{
+  display:block;
+  aspect-ratio:16/10;
+  overflow:hidden;
+  background:var(--glass-soft);
+  border-bottom:1px solid var(--border);
+}
+.mock-shot img{
+  display:block;width:100%;height:100%;
+  object-fit:cover;object-position:top center;
+  transition:transform .6s cubic-bezier(.22,.8,.3,1);
+}
+.mock:hover .mock-shot img{transform:scale(1.03)}
+.mock-shot + .mock-body{padding:16px}
+@media (max-width:560px){
+  .mock-shot + .mock-body .mock-tiles{grid-template-columns:repeat(3,1fr);gap:8px}
+  .mock-shot + .mock-body .tile{padding:10px 8px}
+  .mock-shot + .mock-body .tile .t-n{font-size:14px}
+  .mock-shot + .mock-body .tile .t-l{font-size:10.5px}
+}
