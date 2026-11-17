@@ -159,8 +159,17 @@ header{
 /* ---------- trusted ---------- */
 .trusted{padding:32px 0;background:var(--bg-alt);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .trusted p{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);text-align:center;margin-bottom:18px}
-.logos{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px}
-.logos div{font-family:var(--font-head);font-size:16px;font-weight:500;color:var(--text-dim)}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:26px 52px}
+/* Each logo is a one-colour mask, so it follows the theme colour. */
+.logo-item{
+  display:block;height:calc(var(--h) * 1px);
+  background:var(--text-dim);opacity:.8;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;
+  -webkit-mask-size:contain;mask-size:contain;
+  transition:opacity .15s ease,background-color .15s ease;
+}
+.logo-item:hover{opacity:1;background:var(--primary-ink)}
 
 /* ---------- cards ---------- */
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px}
@@ -337,8 +346,8 @@ footer{border-top:1px solid var(--border);padding:40px 0 34px;margin-top:24px}
   .cta-band{padding:44px 22px}
   .mock-tiles{grid-template-columns:1fr}
   .hero-cta .btn{flex:1 1 100%}
-  .logos{gap:8px 22px}
-  .logos div{font-size:14.5px}
+  .logos{gap:20px 30px}
+  .logo-item{height:calc(var(--h) * .75px)}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition-duration:.01ms!important}
